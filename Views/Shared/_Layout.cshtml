@@ -1,0 +1,85 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - By Opseazy Solutions</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top" style="background-color: #00686e;">
+        <div class="container">
+
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+
+                <a class="navbar-brand" href="#">Opseazy</a>
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+
+                    <li>&nbsp;</li>
+                </ul>
+                <ul class="nav navbar-nav">
+
+                    <li><a href="@Url.Action("Index", "Home")">Garments</a></li>
+                </ul>
+
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="#"><span class="glyphicon glyphicon-search"></span></a></li>
+                    <li><a href="#"><span class="glyphicon glyphicon-user"></span></a></li>
+                    <li><a href="#"><span class="glyphicon glyphicon-cog"></span></a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+
+    <main role="main">
+
+        <div class="container body-content">
+            @RenderBody()
+            <hr />
+            <footer>
+            </footer>
+        </div>
+    </main>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+
+
+</body>
+</html>
+<style>
+
+
+
+    .nav-link {
+        padding: .5rem 1rem;
+        font-weight: 500;
+        color: #333;
+    }
+
+        .nav-link:hover {
+            background-color: #e9ecef;
+        }
+
+        .nav-link.active {
+            background-color: #007bff;
+            color: #fff;
+        }
+
+    main {
+        margin-left: 150px;
+        transition: margin-left 0.3s;
+        padding: 20px;
+        margin-top: 20px;
+    }
+</style>

@@ -1,0 +1,425 @@
+﻿@model IEnumerable<Smart.Models.CompanyHeadModel>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Company Head</h2>
+<button type="button" class="bg-primary"  data-toggle="modal" data-target="#myModal" onclick="ClearTextBox();">
+    Add Company
+</button>
+<br />
+<br />
+<div>
+    <table class="table table-bordered table-hover" id="CompanyHeadTable">
+        <thead class="bg-primary">
+            <tr>
+                <th>ID</th>
+                <th>Company Name</th>
+                <th>Unique Name</th>
+                <th>Company Print_Name</th>
+                <th>Company Code</th>
+                <th> Address1</th>
+                <th> Address2</th>
+                <th> Address3</th>
+                <th> Address4</th>
+                <th> Phone_No</th>
+                <th> Fax_No</th>
+                <th> Email_id</th>
+                <th> website</th>
+                <th> Tin_No</th>
+                <th> Cst_No</th>
+                <th>Company Type</th>
+                <th> Pan_No</th>
+                <th>Modified Date_Time</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody class="tbody" style="width:1px; white-space:nowrap;">
+            <!-- Company records will be populated here -->
+        </tbody>
+    </table>
+    <button type="button" class="btn btn-primary" onclick="history.back();">Back</button>
+</div>
+<div class="modal" data-backdrop="static" data-keyboard="false" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" style="width:800px;">
+        <div class="modal-content">
+
+            <div class="modal-header btn-primary">
+                <button type="button" class="close" data-dismiss="modal">×</button>
+                <h4 class="modal-title" id="myModalLabel">Company</h4>
+            </div>
+            <div class="modal-body row">
+                <form>
+                    <div class="col-lg-4">
+                        <div class="form-group">
+                            <label for="CompanyId">Company ID</label>
+                            <input type="text" class="form-control" id="CompanyId" placeholder="Company Id" disabled="disabled" />
+                        </div>
+                        <div class="form-group">
+                            <label for="CompanyName">Company Name</label>
+                            <input type="text" class="form-control" id="CompanyName" placeholder="Company Name" />
+                        </div>
+                        <div class="form-group">
+                            <label for="UniqueName">Unique Name</label>
+                            <input type="text" class="form-control" id="UniqueName" placeholder="Unique Name " />
+                        </div>
+                        <div class="form-group">
+                            <label for="CompanyPrintName">Company Print Name</label>
+                            <input type="text" class="form-control" id="CompanyPrintName" placeholder="Company Print Name" />
+                        </div>
+                        <div class="form-group">
+                            <label for="CompanyCode">Company Code</label>
+                            <input type="text" class="form-control" id="CompanyCode" placeholder="Company Code" />
+                        </div>
+                        <div class="form-group">
+                            <label for="CompanyAddress1">Company Address1</label>
+                            <input type="text" class="form-control" id="CompanyAddress1" placeholder="Company Address1" />
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="form-group">
+                            <label for="CompanyAddress2">Company Address2</label>
+                            <input type="text" class="form-control" id="CompanyAddress2" placeholder="Company Address2" />
+                        </div>
+                        <div class="form-group">
+                            <label for="CompanyAddress3">Company Address3</label>
+                            <input type="text" class="form-control" id="CompanyAddress3" placeholder="Company Address3" />
+                        </div>
+                        <div class="form-group">
+                            <label for="CompanyAddress4">Company Address4</label>
+                            <input type="text" class="form-control" id="CompanyAddress4" placeholder="Company Address4" />
+                        </div>
+                        <div class="form-group">
+                            <label for="CompanyPhoneNo">Company Phone No</label>
+                            <input type="text" class="form-control" id="CompanyPhoneNo" placeholder="Company Phone No" />
+                        </div>
+                        <div class="form-group">
+                            <label for="CompanyFaxNo">Company Fax No</label>
+                            <input type="text" class="form-control" id="CompanyFaxNo" placeholder="Company Fax No"  />
+                        </div>
+                        <div class="form-group">
+                            <label for="CompanyEmailid">Company Email id</label>
+                            <input type="text" class="form-control" id="CompanyEmailid" placeholder="Company Email id" />
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="form-group">
+                            <label for="companywebsite">company website</label>
+                            <input type="text" class="form-control" id="companywebsite" placeholder="company website" />
+                        </div>
+                        <div class="form-group">
+                            <label for="CompanyTinNo">Company Tin No</label>
+                            <input type="text" class="form-control" id="CompanyTinNo" placeholder="Company Tin No" />
+                        </div>
+                        <div class="form-group">
+                            <label for="CompanyCstNo">Company Cst No</label>
+                            <input type="text" class="form-control" id="CompanyCstNo" placeholder="Company Cst No" />
+                        </div>
+                        <div class="form-group">
+                            <label for="CompanyType">Company Type</label>
+                            <input type="text" class="form-control" id="CompanyType" placeholder="Company Type" />
+                        </div>
+                        <div class="form-group">
+                            <label for="CompanyPanNo">Company Pan No</label>
+                            <input type="text" class="form-control" id="CompanyPanNo" placeholder="Company Pan No" />
+                        </div>
+
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" id="btnAdd" data-dismiss="modal" onclick="Add();">Save</button>
+                <button type="button" class="btn btn-primary" id="btnUpdate" style="display:none;" data-dismiss="modal" onclick="Update();">Update</button>
+                <button type="button" id="btnCancel" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    <link href="//cdn.datatables.net/1.10.24/css/jquery.dataTables.min.css" rel="stylesheet" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="//cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.4/css/jquery.dataTables.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment-with-locales.min.js"></script>
+
+    <link href="~/Scripts/MyScripts/StyleSheet.css" rel="stylesheet" />
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            loadData();
+        });
+        function loadData() {
+
+            $.ajax({
+                url: "/CompanyHead/List/",
+                type: "GET",
+                dataType: "json",
+                success: function (data) {
+                    $('#CompanyHeadTable').DataTable({
+                        scrollX: true,
+                        pagingType: 'full',
+                        scrollY: '250px',
+                        "bDestroy": true,
+                        data: data,
+                        columns: [
+                            { data: "CompanyId" },
+                            { data: "CompanyName" },
+                            { data: "UniqueName", "visible": false },
+                            { data: "CompanyPrintName" },
+                            { data: "CompanyCode" },
+                            { data: "CompanyAddress1" },
+                            { data: "CompanyAddress2" },
+                            { data: "CompanyAddress3" },
+                            { data: "CompanyAddress4" },
+                            { data: "CompanyPhoneNo" },
+                            { data: "CompanyFaxNo" },
+                            { data: "CompanyEmailid" },
+                            { data: "companywebsite" },
+                            { data: "CompanyTinNo" },
+                            { data: "CompanyCstNo" },
+                            { data: "CompanyType" },
+                            { data: "CompanyPanNo" },
+
+                            {
+                                data: "ModifiedDateTime", "visible": false,
+                                render: function (data) {
+                                    var date1 = moment(data).format("DD-MM-YYYY");
+                                    if (date1 == '01-01-0001') {
+                                        return null;
+                                    } else {
+                                        return moment(data).format("DD-MM-YYYY");
+                                    }
+                                }
+                            },
+                            
+                            {
+                                data: null,
+                                render: function (data) {
+                                    {
+
+                                        var h1 = '<a href="#" class="glyphicon glyphicon-pencil" data-toggle="modal" data-target="#myModal" onclick=Edit(' + data.CompanyId + ')/a> '
+                                        var h2 = '<a href = "#" class="glyphicon glyphicon-trash" style = "color: red;padding-left:15px " onclick = Delete(' + data.CompanyId + ')/a> '
+                                 
+                                        var h4 = h1 + h2 
+
+                                        return h4;
+
+
+                                    }
+
+                                }
+                            }
+                        ],
+                        "initComplete": function (settings, json) {
+                            if (json.recordsTotal > 0) {
+                                $("#CompanyHeadTable").DataTable().page(0).draw(false);
+                            }
+
+                            $('.paginate_button').on('click', function () {
+                                if ($(this).hasClass('disabled')) {
+                                    return false;
+                                }
+                            });
+                        }
+                    });
+                }
+            });
+
+        }
+        function Add() {
+
+            var ComObj = {
+                CompanyId: $('#CompanyId').val(),
+                CompanyName: $('#CompanyName').val(),
+                UniqueName: $('#UniqueName').val(),
+                CompanyPrintName: $('#CompanyPrintName').val(),
+                CompanyCode: $('#CompanyCode').val(),
+                CompanyAddress1: $('#CompanyAddress1').val(),
+                CompanyAddress2: $('#CompanyAddress2').val(),
+                CompanyAddress3: $('#CompanyAddress3').val(),
+                CompanyAddress4: $('#CompanyAddress4').val(),
+                CompanyPhoneNo: $('#CompanyPhoneNo').val(),
+                CompanyFaxNo: $('#CompanyFaxNo').val(),
+                CompanyEmailid: $('#CompanyEmailid').val(),
+                companywebsite: $('#companywebsite').val(),
+                CompanyTinNo: $('#CompanyTinNo').val(),
+                CompanyCstNo: $('#CompanyCstNo').val(),
+                CompanyType: $('#CompanyType').val(),
+                CompanyPanNo: $('#CompanyPanNo').val(),
+                ModifiedDateTime: $('#ModifiedDateTime').val(),
+
+            };
+
+            $.ajax({
+                url: "/CompanyHead/Add",
+                data: JSON.stringify(ComObj),
+                type: "POST",
+                contentType: "application/json;charset=utf-8",
+                dataType: "json",
+                success: function (result) {
+                    loadData();
+                    $('#myModal').modal('hide');
+                    $('#CompanyId').val();
+                    $('#CompanyName').val();
+                    $('#UniqueName').val();
+                    $('#CompanyPrintName').val();
+                    $('#CompanyCode').val();
+                    $('#CompanyAddress1').val();
+                    $('#CompanyAddress2').val();
+                    $('#CompanyAddress3').val();
+                    $('#CompanyAddress4').val();
+                    $('#CompanyPhoneNo').val();
+                    $('#CompanyFaxNo').val();
+                    $('#CompanyEmailid').val();
+                    $('#companywebsite').val();
+                    $('#CompanyTinNo').val();
+                    $('#CompanyCstNo').val();
+                    $('#CompanyType').val();
+                    $('#CompanyPanNo').val();
+                    $('#ModifiedDateTime').val();
+                },
+                error: function (errormessage) {
+                    alert(errormessage.responseText);
+                }
+            });
+            return false;
+        }
+        function Edit(ComID) {
+            $.ajax({
+                url: "/CompanyHead/GetbyID/" + ComID,
+                type: "GET",
+                contentType: "application/json;charset=UTF-8",
+                dataType: "json",
+                success: function (result) {
+
+                    $('#CompanyId').val(ComID);
+                    $('#CompanyName').val(result.CompanyName);
+                    $('#UniqueName').val(result.UniqueName);
+                    $('#CompanyPrintName').val(result.CompanyPrintName);
+                    $('#CompanyCode').val(result.CompanyCode);
+                    $('#CompanyAddress1').val(result.CompanyAddress1);
+                    $('#CompanyAddress2').val(result.CompanyAddress2);
+                    $('#CompanyAddress3').val(result.CompanyAddress3);
+                    $('#CompanyAddress4').val(result.CompanyAddress4);
+                    $('#CompanyPhoneNo').val(result.CompanyPhoneNo);
+                    $('#CompanyFaxNo').val(result.CompanyFaxNo);
+                    $('#CompanyEmailid').val(result.CompanyEmailid);
+                    $('#companywebsite').val(result.companywebsite);
+                    $('#CompanyTinNo').val(result.CompanyTinNo);
+                    $('#CompanyCstNo').val(result.CompanyCstNo);
+                    $('#CompanyType').val(result.CompanyType);
+                    $('#CompanyPanNo').val(result.CompanyPanNo);
+                    $('#ModifiedDateTime').val(result.ModifiedDateTime);
+                   
+                    $('#btnUpdate').show();
+                    $('#btnAdd').hide();
+                },
+                error: function (errormessage) {
+                    alert(errormessage.responseText);
+                }
+            });
+            return false;
+        }
+        function Update() {
+            var ComObj = {
+                CompanyId: $('#CompanyId').val(),
+                CompanyName: $('#CompanyName').val(),
+                UniqueName: $('#UniqueName').val(),
+                CompanyPrintName: $('#CompanyPrintName').val(),
+                CompanyCode: $('#CompanyCode').val(),
+                CompanyAddress1: $('#CompanyAddress1').val(),
+                CompanyAddress2: $('#CompanyAddress2').val(),
+                CompanyAddress3: $('#CompanyAddress3').val(),
+                CompanyAddress4: $('#CompanyAddress4').val(),
+                CompanyPhoneNo: $('#CompanyPhoneNo').val(),
+                CompanyFaxNo: $('#CompanyFaxNo').val(),
+                CompanyEmailid: $('#CompanyEmailid').val(),
+                companywebsite: $('#companywebsite').val(),
+                CompanyTinNo: $('#CompanyTinNo').val(),
+                CompanyCstNo: $('#CompanyCstNo').val(),
+                CompanyType: $('#CompanyType').val(),
+                CompanyPanNo: $('#CompanyPanNo').val(),
+                ModifiedDateTime: $('#ModifiedDateTime').val(),
+
+            };
+
+            $.ajax(
+                {
+                    url: "/CompanyHead/Update",
+                    data: JSON.stringify(ComObj),
+                    type: "POST",
+                    contentType: "application/json;charset=utf-8",
+                    dataType: "json",
+                    success: function (result) {
+                        loadData();
+                        $('#CompanyId').val("");
+                        $('#CompanyName').val("");
+                        $('#UniqueName').val("");
+                        $('#CompanyPrintName').val("");
+                        $('#CompanyCode').val("");
+                        $('#CompanyAddress1').val("");
+                        $('#CompanyAddress2').val("");
+                        $('#CompanyAddress3').val("");
+                        $('#CompanyAddress4').val("");
+                        $('#CompanyPhoneNo').val("");
+                        $('#CompanyFaxNo').val("");
+                        $('#CompanyEmailid').val("");
+                        $('#companywebsite').val("");
+                        $('#CompanyTinNo').val("");
+                        $('#CompanyCstNo').val("");
+                        $('#CompanyType').val("");
+                        $('#CompanyPanNo').val("");
+                        $('#ModifiedDateTime').val("");
+
+
+                    },
+                    error: function (errormessage) {
+                        alert(errormessage.responseText);
+                    }
+                });
+        }
+        function Delete(ID) {
+            var ans = confirm("Are you sure you want to delete this ID?");
+            if (ans) {
+                $.ajax({
+                    url: "/CompanyHead/Delete/" + ID,
+                    type: "POST",
+                    contentType: "application/json;charset=UTF-8",
+                    dataType: "json",
+                    success: function (result) {
+                        loadData();
+                    },
+                    error: function (errormessage) {
+                        alert(errormessage.responseText);
+                    }
+                });
+            }
+        }
+        function clearTextBox() {
+            $('#CompanyId').val("");
+            $('#CompanyName').val("");
+            $('#UniqueName').val("");
+            $('#CompanyPrintName').val("");
+            $('#CompanyCode').val("");
+            $('#CompanyAddress1').val("");
+            $('#CompanyAddress2').val("");
+            $('#CompanyAddress3').val("");
+            $('#CompanyAddress4').val("");
+            $('#CompanyPhoneNo').val("");
+            $('#CompanyFaxNo').val("");
+            $('#CompanyEmailid').val("");
+            $('#companywebsite').val("");
+            $('#CompanyTinNo').val("");
+            $('#CompanyCstNo').val("");
+            $('#CompanyType').val("");
+            $('#CompanyPanNo').val("");
+
+            $('#btnUpdate').hide();
+            $('#btnAdd').show();
+
+        }
+    </script>
+}
